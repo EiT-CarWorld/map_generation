@@ -49,6 +49,14 @@
       <has-kv k="highway" v="motorway_link"/>
       <bbox-query {{bbox}}/>
     </query>
+    <query type="way">
+      <has-kv k="highway" v="service"/>
+      <bbox-query {{bbox}}/>
+    </query>
+    <query type="way">
+      <has-kv k="highway" v="living_street"/>
+      <bbox-query {{bbox}}/>
+    </query>
   </union>
   <!-- print results -->
   <print mode="body"/>
@@ -65,11 +73,12 @@ Primary
 Secondary
 Tertiary
 Unclassified
-Living street
 Trunk
 Trunk link
 Tertiary link
 Secondary link
 Motorway
 Motorway link
+Living street
+Service
 -->
