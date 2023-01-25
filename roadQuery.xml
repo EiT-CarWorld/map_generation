@@ -1,0 +1,75 @@
+<osm-script output="json" timeout="25">
+  <!-- gather results -->
+  <union>
+    <query type="node">
+      <has-kv k="highway" v="turning_circle"/>
+      <bbox-query {{bbox}}/>
+    </query>
+    <query type="way">
+      <has-kv k="highway" v="residential"/>
+      <bbox-query {{bbox}}/>
+    </query>
+    <query type="way">
+      <has-kv k="highway" v="primary"/>
+      <bbox-query {{bbox}}/>
+    </query>
+    <query type="way">
+      <has-kv k="highway" v="tertiary"/>
+      <bbox-query {{bbox}}/>
+    </query>
+    <query type="way">
+      <has-kv k="highway" v="unclassified"/>
+      <bbox-query {{bbox}}/>
+    </query>
+    <query type="way">
+      <has-kv k="highway" v="secondary"/>
+      <bbox-query {{bbox}}/>
+    </query>
+    <query type="way">
+      <has-kv k="highway" v="trunk"/>
+      <bbox-query {{bbox}}/>
+    </query>
+    <query type="way">
+      <has-kv k="highway" v="trunk_link"/>
+      <bbox-query {{bbox}}/>
+    </query>
+    <query type="way">
+      <has-kv k="highway" v="tertiary_link"/>
+      <bbox-query {{bbox}}/>
+    </query>
+    <query type="way">
+      <has-kv k="highway" v="secondary_link"/>
+      <bbox-query {{bbox}}/>
+    </query>
+    <query type="way">
+      <has-kv k="highway" v="motorway"/>
+      <bbox-query {{bbox}}/>
+    </query>
+    <query type="way">
+      <has-kv k="highway" v="motorway_link"/>
+      <bbox-query {{bbox}}/>
+    </query>
+  </union>
+  <!-- print results -->
+  <print mode="body"/>
+  <recurse type="down"/>
+  <print mode="skeleton" order="quadtile"/>
+</osm-script>
+<!--
+Contains:
+
+Turning circle
+
+Residential
+Primary
+Secondary
+Tertiary
+Unclassified
+Living street
+Trunk
+Trunk link
+Tertiary link
+Secondary link
+Motorway
+Motorway link
+-->
