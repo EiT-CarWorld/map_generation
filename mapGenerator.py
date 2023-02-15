@@ -3,24 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-class MapGenerator:
+class RoadGenerator:
 
-    def __init__(self, filename, distance):
-        self.filename = filename
+    def __init__(self, points, distance=4):
         self.distance = distance
-        self.points = self.read_points(filename)
+        self.points = points
         self.first_edge_track = []
         self.second_edge_track = []
-
-    def read_points(self, filename):
-        # read the points from the file
-        with open(filename, 'rt') as f:
-            points = []
-            for line in f:
-                x, y = line.split(',')
-                point = (float(x), float(y))
-                points.append(point)
-            return points
 
     def points_to_vector(self, p1, p2):
         # return the vector from p1 to p2
@@ -72,20 +61,52 @@ class MapGenerator:
     def get_tracks(self):
         return self. points, self.first_edge_track, self.second_edge_track
 
-    def display_map(self):
+    def display_road(self):
         self.generate_track()
         x = [p[0] for p in self.points]
         y = [p[1] for p in self.points]
-        plt.plot(x, y, 'k-')
+        plt.plot(x, y, 'b-')
         x = [p[0] for p in self.first_edge_track]
         y = [p[1] for p in self.first_edge_track]
         plt.plot(x, y, 'k-')
         x = [p[0] for p in self.second_edge_track]
         y = [p[1] for p in self.second_edge_track]
         plt.plot(x, y, 'k-')
+
+
+class MapGenerator:
+    def __init__(self, filename=None, distance=0.0001):
+        self.filename = filename
+        self.distance = distance
+        self.roads = []
+
+    def get_roads(self, filename):
+        with open(filename, 'rt') as f:
+            lats = []
+            lons = []
+            length = int(f.readline())
+            for i in range(length):
+                lat = f.readline().split(' ')
+                lats.append(lat)
+
+            for i in range(length):
+                lon = f.readline().split(' ')
+                lons.append(lon)
+
+            for i in range(length):
+                road = []
+                for j in range(len(lats[i])):
+                    road.append((float(lats[i][j]), float(lons[i][j])))
+                self.roads.append(road)
+
+    def display_map(self):
+        for road in self.roads:
+            road_generator = RoadGenerator(points=road, distance=self.distance)
+            road_generator.display_road()
         plt.show()
 
 
 if __name__ == '__main__':
-    map_generator = MapGenerator('formattedMaps/track.txt', 4)
+    map_generator = MapGenerator("formattedMaps/mapKatta.txt")
+    map_generator.get_roads("formattedMaps/mapKatta.txt")
     map_generator.display_map()

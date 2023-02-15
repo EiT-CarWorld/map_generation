@@ -4,45 +4,36 @@ import json
 import numpy as np
 
 
-def split_line(p1, p2, width):
-    # Calculate the unit normal vector of the line
-    diff = p2 - p1
-    normal = np.array([-diff[1], diff[0]])
-    normal = normal / np.linalg.norm(normal)
-
-    # Multiply the normal vector by half of the width
-    normal = normal * (width / 2)
-
-    # Determine which direction the normal vector should point
-    mid_point = (p1 + p2) / 2
-    if mid_point[0] > 0 and mid_point[1] > 0:
-        normal = -normal
-
-    # Calculate the two new end points
-    p1_new = p1 - normal
-    p2_new = p2 - normal
-    p3_new = p1 + normal
-    p4_new = p2 + normal
-
-    # Return the two new lines
-    return [(p1_new, p2_new), (p3_new, p4_new)]
-
-
 with open('maps/mapKatta.json') as f:
     data = json.load(f)
     nodeList = [element for element in data["elements"]
                 if element["type"] == "node"]
     nodes = {node["id"]: node for node in nodeList}
-    paths = [element for element in data["elements"]
-             if element["type"] == "way"]
-    print(nodes)
+    ways = {element["id"]: element["nodes"] for element in data["elements"]
+            if element["type"] == "way"}
 
-    for path in tqdm(paths):
+    roads = []
+    for id in tqdm(ways):
+        path = ways[id]
         lon = []
         lat = []
-        for node in path["nodes"]:
+        for node in path:
             lon.append(nodes[node]["lon"])
             lat.append(nodes[node]["lat"])
+        roads.append((lon, lat))
 
         plt.plot(lon, lat, color='blue', linestyle='-', marker='')
+
+    # write to file in formattedMaps folder
+    with open('formattedMaps/mapKatta.txt', 'w') as f:
+        # clear the file if it exists
+        f.truncate(0)
+        f.write(str(len(roads))+"\n")
+        lats = [road[0] for road in roads]
+        lons = [road[1] for road in roads]
+        for i in range(len(roads)):
+            f.write(" ".join([str(lat) for lat in lats[i]])+"\n")
+        for i in range(len(roads)):
+            f.write(" ".join([str(lon) for lon in lons[i]])+"\n")
+
     plt.show()
