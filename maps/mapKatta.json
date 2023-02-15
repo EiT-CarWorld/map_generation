@@ -1,0 +1,1454 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.59 e21c39fe",
+  "osm3s": {
+    "timestamp_osm_base": "2023-01-25T14:10:09Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "way",
+      "id": 4973559,
+      "nodes": [78315, 153142135, 68964727, 220906552, 3051860260, 68964746],
+      "tags": {
+        "cycleway:left": "track",
+        "cycleway:left:oneway": "-1",
+        "cycleway:right": "track",
+        "highway": "tertiary",
+        "lanes": "1",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Bispegata",
+        "old_name": "Östre Gade",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "sidewalk": "both",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 4973787,
+      "nodes": [
+        79192, 1139159471, 386579918, 1139002296, 78352, 1139002505, 170898183,
+        33847953, 9804189222
+      ],
+      "tags": {
+        "cycleway:both": "no",
+        "highway": "unclassified",
+        "lane_markings": "no",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Munkegata",
+        "old_name": "Munke Gaden",
+        "sidewalk": "both",
+        "surface": "asphalt",
+        "zone:traffic": "NO:urban"
+      }
+    },
+    {
+      "type": "way",
+      "id": 4981431,
+      "nodes": [78352, 1139001807, 68964718],
+      "tags": {
+        "cycleway:left": "lane",
+        "highway": "unclassified",
+        "lanes": "2",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Erling Skakkes gate",
+        "old_name": "Vestre Gade",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "sidewalk": "both",
+        "surface": "asphalt",
+        "zone:traffic": "NO:urban"
+      }
+    },
+    {
+      "type": "way",
+      "id": 4981432,
+      "nodes": [
+        78319, 248625189, 68964693, 170898169, 2500113533, 2500113535, 33847822,
+        2500113537, 1139002045, 78352
+      ],
+      "tags": {
+        "cycleway:left": "lane",
+        "highway": "unclassified",
+        "lanes": "1",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Erling Skakkes gate",
+        "old_name": "Vestre Gade",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "sidewalk": "separate",
+        "surface": "asphalt",
+        "wikidata": "Q11986131",
+        "zone:traffic": "NO:urban"
+      }
+    },
+    {
+      "type": "way",
+      "id": 5049341,
+      "nodes": [33847824, 170898191, 2500113538, 33847822],
+      "tags": {
+        "highway": "unclassified",
+        "lane_markings": "no",
+        "lit": "yes",
+        "maxspeed": "40",
+        "maxspeed:type": "NO:zone40",
+        "name": "Schultz gate",
+        "sidewalk": "both",
+        "smoothness": "good",
+        "surface": "asphalt",
+        "zone:traffic": "NO:urban"
+      }
+    },
+    {
+      "type": "way",
+      "id": 5049401,
+      "nodes": [33847807, 1693174327, 3003717285, 152930291, 3051860258, 78315],
+      "tags": {
+        "cycleway": "lane",
+        "cycleway:left": "lane",
+        "highway": "unclassified",
+        "lit": "yes",
+        "maxspeed": "30",
+        "maxspeed:type": "NO:zone30",
+        "name": "Bispegata",
+        "old_name": "Östre Gade",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "sidewalk": "both",
+        "surface": "asphalt",
+        "turn:lanes": "through"
+      }
+    },
+    {
+      "type": "way",
+      "id": 8051475,
+      "nodes": [
+        33040670, 1139001967, 1139001721, 152930274, 152930268, 152930300,
+        33847808, 140405977, 340282334, 34037196
+      ],
+      "tags": {
+        "highway": "tertiary",
+        "lanes": "2",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Erling Skakkes gate",
+        "old_name": "Vestre Gade",
+        "sidewalk": "both",
+        "surface": "asphalt",
+        "zone:traffic": "NO:urban"
+      }
+    },
+    {
+      "type": "way",
+      "id": 9226779,
+      "nodes": [68964746, 3051860259, 248514745, 220906597, 181323630],
+      "tags": {
+        "highway": "service",
+        "lit": "yes",
+        "name": "Kongsgårdsgata",
+        "sidewalk": "left",
+        "smoothness": "intermediate",
+        "surface": "sett"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15429578,
+      "nodes": [152930286, 9814976486, 3409083250, 4829465622],
+      "tags": {
+        "highway": "service",
+        "lit": "yes",
+        "service": "alley",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15437168,
+      "nodes": [68964718, 7499370622, 3051860263],
+      "tags": {
+        "cycleway:both": "no",
+        "highway": "unclassified",
+        "lane_markings": "no",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Tinghusgata",
+        "oneway": "no",
+        "sidewalk": "both",
+        "surface": "asphalt",
+        "zone:traffic": "NO:urban"
+      }
+    },
+    {
+      "type": "way",
+      "id": 16558813,
+      "nodes": [
+        170898165, 10222549230, 7007039190, 170898195, 7499370593, 170898169,
+        7499364577, 170898206, 2371362277, 2500113391
+      ],
+      "tags": {
+        "cycleway:both": "no",
+        "highway": "service",
+        "lanes": "1",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "St Jørgensveita",
+        "oneway": "no",
+        "service": "alley",
+        "sidewalk": "both",
+        "surface": "paving_stones"
+      }
+    },
+    {
+      "type": "way",
+      "id": 16558817,
+      "nodes": [34925997, 3402834864, 1027304240, 2500113502, 170898206],
+      "tags": {
+        "highway": "service",
+        "name": "Kannikestrete",
+        "old_name": "Broveiten",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "service": "alley",
+        "sidewalk": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 20575679,
+      "nodes": [220906552, 3402834749, 1037841817, 220906509],
+      "tags": {
+        "highway": "service",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 30670371,
+      "nodes": [33040670, 152930280, 3409083258, 152930286],
+      "tags": {
+        "highway": "primary",
+        "lanes": "4",
+        "lanes:psv": "2",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Prinsens gate",
+        "old_name": "Prindsens Gade",
+        "priority_road": "designated",
+        "ref": "6690",
+        "sidewalk": "separate",
+        "surface": "asphalt",
+        "turn:lanes:backward": "through;left|",
+        "zone:traffic": "NO:urban"
+      }
+    },
+    {
+      "type": "way",
+      "id": 33770215,
+      "nodes": [
+        386579918, 7499364567, 7499364573, 386579919, 2371362279, 2371362264,
+        386579920
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 41361081,
+      "nodes": [78315, 3051860256, 128728098],
+      "tags": {
+        "highway": "primary",
+        "lanes": "2",
+        "lanes:psv": "1",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Prinsens gate",
+        "old_name": "Prindsens Gade",
+        "oneway": "yes",
+        "priority_road": "designated",
+        "ref": "6690",
+        "sidewalk:left": "no",
+        "sidewalk:right": "separate",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 41361089,
+      "nodes": [
+        68964746, 1030677525, 8094747696, 3051860262, 79192, 1139159506,
+        170898211, 2500113381, 170898176, 2500113395, 78318
+      ],
+      "tags": {
+        "cycleway": "lane",
+        "highway": "tertiary",
+        "lanes": "1",
+        "maxspeed": "40",
+        "name": "Bispegata",
+        "old_name": "Östre Gade",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "sidewalk": "both",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 70945991,
+      "nodes": [845471313, 7499370618, 3240331162],
+      "tags": {
+        "highway": "unclassified",
+        "name": "Danielsveita",
+        "oneway": "yes",
+        "sidewalk": "both"
+      }
+    },
+    {
+      "type": "way",
+      "id": 88818084,
+      "nodes": [1030677498, 1030677502, 1030677488],
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 88818087,
+      "nodes": [
+        1030677491, 1030677493, 1030677498, 1030677500, 1030677512, 1030677521,
+        1030677488, 1030677491, 1030677511
+      ],
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 88818088,
+      "nodes": [1030677512, 1030677502],
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 88818090,
+      "nodes": [1030677521, 1030677492, 3402834783, 1030677525],
+      "tags": {
+        "highway": "service",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 224570766,
+      "nodes": [2333946711, 4367910615, 34957513],
+      "tags": {
+        "highway": "service",
+        "lit": "yes",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 228455371,
+      "nodes": [
+        2371362279, 2371362281, 2500113497, 2371362283, 2371362284, 2500113499,
+        170898206
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 242545250,
+      "nodes": [2500113517, 2500113508, 2500113506, 7499364578, 68964693],
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle"
+      }
+    },
+    {
+      "type": "way",
+      "id": 295660417,
+      "nodes": [
+        2333946671, 181323628, 2333946670, 34957520, 181323612, 248514729,
+        181323622, 34957521, 181323620, 181323619, 34957513, 181323632,
+        34957514, 3402834774, 79192
+      ],
+      "tags": {
+        "highway": "service",
+        "lit": "yes",
+        "motorcar": "permissive"
+      }
+    },
+    {
+      "type": "way",
+      "id": 301077361,
+      "nodes": [3051860255, 3051860257, 78315],
+      "tags": {
+        "highway": "primary",
+        "lanes": "3",
+        "lanes:psv": "1",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Prinsens gate",
+        "old_name": "Prindsens Gade",
+        "oneway": "yes",
+        "priority_road": "designated",
+        "ref": "6690",
+        "sidewalk:left": "no",
+        "sidewalk:right": "separate",
+        "surface": "asphalt",
+        "turn:lanes": "through||right"
+      }
+    },
+    {
+      "type": "way",
+      "id": 301077362,
+      "nodes": [3051860263, 9817394247, 9817394245, 3051860261, 68964727],
+      "tags": {
+        "cycleway:both": "no",
+        "highway": "unclassified",
+        "lane_markings": "no",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Tinghusgata",
+        "oneway": "yes",
+        "sidewalk": "both",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 333867337,
+      "nodes": [3409083258, 3409083257, 3409083256],
+      "tags": {
+        "highway": "service",
+        "lit": "yes",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 445395227,
+      "nodes": [152930286, 155251462, 78315],
+      "tags": {
+        "highway": "primary",
+        "lanes": "4",
+        "lanes:psv:backward": "1",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Prinsens gate",
+        "old_name": "Prindsens Gade",
+        "priority_road": "designated",
+        "ref": "6690",
+        "surface": "asphalt",
+        "turn:lanes:forward": "through|through"
+      }
+    },
+    {
+      "type": "way",
+      "id": 445395229,
+      "nodes": [4428305891, 1139001456, 33040670],
+      "tags": {
+        "highway": "primary",
+        "lanes": "4",
+        "lanes:backward": "2",
+        "lanes:forward": "2",
+        "lanes:psv:backward": "1",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Prinsens gate",
+        "old_name": "Prindsens Gade",
+        "priority_road": "designated",
+        "ref": "6690",
+        "sidewalk": "separate",
+        "surface": "asphalt",
+        "turn:lanes:forward": "through|right",
+        "zone:traffic": "NO:urban"
+      }
+    },
+    {
+      "type": "way",
+      "id": 505301156,
+      "nodes": [68964718, 3051860265, 845471313],
+      "tags": {
+        "highway": "unclassified",
+        "lanes": "2",
+        "maxspeed": "40",
+        "name": "Erling Skakkes gate",
+        "old_name": "Vestre Gade",
+        "oneway": "yes",
+        "sidewalk": "both",
+        "surface": "asphalt",
+        "zone:traffic": "NO:urban"
+      }
+    },
+    {
+      "type": "way",
+      "id": 505301157,
+      "nodes": [845471313, 1139002228, 33040670],
+      "tags": {
+        "highway": "unclassified",
+        "lanes": "2",
+        "lit": "yes",
+        "maxspeed": "40",
+        "name": "Erling Skakkes gate",
+        "old_name": "Vestre Gade",
+        "oneway": "yes",
+        "sidewalk": "both",
+        "surface": "asphalt",
+        "turn:lanes": "left|through;right",
+        "zone:traffic": "NO:urban"
+      }
+    },
+    {
+      "type": "way",
+      "id": 759460628,
+      "nodes": [181323630, 220906565, 2333946696, 181528971],
+      "tags": {
+        "highway": "service",
+        "lit": "yes",
+        "name": "Kongsgårdsgata",
+        "sidewalk": "left",
+        "surface": "sett"
+      }
+    },
+    {
+      "type": "way",
+      "id": 868439542,
+      "nodes": [8094747694, 8094747695, 8094747698],
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 868439543,
+      "nodes": [8094747698, 8094747697, 8094747696],
+      "tags": {
+        "highway": "service",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1069612254,
+      "nodes": [9817394247, 9817394246, 9770085494],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "node",
+      "id": 78315,
+      "lat": 63.4275091,
+      "lon": 10.3930141
+    },
+    {
+      "type": "node",
+      "id": 33847807,
+      "lat": 63.4273804,
+      "lon": 10.3895825
+    },
+    {
+      "type": "node",
+      "id": 68964727,
+      "lat": 63.4275469,
+      "lon": 10.3938342
+    },
+    {
+      "type": "node",
+      "id": 128728098,
+      "lat": 63.4264933,
+      "lon": 10.3932014
+    },
+    {
+      "type": "node",
+      "id": 152930280,
+      "lat": 63.4288052,
+      "lon": 10.3926702
+    },
+    {
+      "type": "node",
+      "id": 152930286,
+      "lat": 63.428128,
+      "lon": 10.3928424
+    },
+    {
+      "type": "node",
+      "id": 152930291,
+      "lat": 63.4274626,
+      "lon": 10.3918002
+    },
+    {
+      "type": "node",
+      "id": 153142135,
+      "lat": 63.4275175,
+      "lon": 10.3932495
+    },
+    {
+      "type": "node",
+      "id": 155251462,
+      "lat": 63.4275827,
+      "lon": 10.392989
+    },
+    {
+      "type": "node",
+      "id": 845471313,
+      "lat": 63.4290235,
+      "lon": 10.3934541
+    },
+    {
+      "type": "node",
+      "id": 1693174327,
+      "lat": 63.4273908,
+      "lon": 10.3897687
+    },
+    {
+      "type": "node",
+      "id": 3003717285,
+      "lat": 63.4274455,
+      "lon": 10.391365
+    },
+    {
+      "type": "node",
+      "id": 3051860255,
+      "lat": 63.4264994,
+      "lon": 10.3933737
+    },
+    {
+      "type": "node",
+      "id": 3051860256,
+      "lat": 63.4274668,
+      "lon": 10.3929543
+    },
+    {
+      "type": "node",
+      "id": 3051860257,
+      "lat": 63.4274754,
+      "lon": 10.3931021
+    },
+    {
+      "type": "node",
+      "id": 3051860258,
+      "lat": 63.4274963,
+      "lon": 10.3927976
+    },
+    {
+      "type": "node",
+      "id": 3051860261,
+      "lat": 63.4276117,
+      "lon": 10.3938208
+    },
+    {
+      "type": "node",
+      "id": 3051860265,
+      "lat": 63.4290258,
+      "lon": 10.3938727
+    },
+    {
+      "type": "node",
+      "id": 3409083250,
+      "lat": 63.4281226,
+      "lon": 10.3926984
+    },
+    {
+      "type": "node",
+      "id": 3409083256,
+      "lat": 63.4286158,
+      "lon": 10.3921525
+    },
+    {
+      "type": "node",
+      "id": 3409083257,
+      "lat": 63.4286411,
+      "lon": 10.3925506
+    },
+    {
+      "type": "node",
+      "id": 3409083258,
+      "lat": 63.4286514,
+      "lon": 10.3927135
+    },
+    {
+      "type": "node",
+      "id": 4829465622,
+      "lat": 63.4281015,
+      "lon": 10.3921341
+    },
+    {
+      "type": "node",
+      "id": 9770085494,
+      "lat": 63.4285923,
+      "lon": 10.3939079
+    },
+    {
+      "type": "node",
+      "id": 9814976486,
+      "lat": 63.4281238,
+      "lon": 10.3927298
+    },
+    {
+      "type": "node",
+      "id": 9817394245,
+      "lat": 63.428275,
+      "lon": 10.3939292
+    },
+    {
+      "type": "node",
+      "id": 9817394246,
+      "lat": 63.4285919,
+      "lon": 10.3939211
+    },
+    {
+      "type": "node",
+      "id": 78318,
+      "lat": 63.4279407,
+      "lon": 10.3997884
+    },
+    {
+      "type": "node",
+      "id": 78319,
+      "lat": 63.4287914,
+      "lon": 10.4004146
+    },
+    {
+      "type": "node",
+      "id": 78352,
+      "lat": 63.4289367,
+      "lon": 10.3958999
+    },
+    {
+      "type": "node",
+      "id": 79192,
+      "lat": 63.4277021,
+      "lon": 10.3965772
+    },
+    {
+      "type": "node",
+      "id": 33847822,
+      "lat": 63.4288893,
+      "lon": 10.3972341
+    },
+    {
+      "type": "node",
+      "id": 34925997,
+      "lat": 63.4284091,
+      "lon": 10.4001036
+    },
+    {
+      "type": "node",
+      "id": 34957513,
+      "lat": 63.427176,
+      "lon": 10.3968691
+    },
+    {
+      "type": "node",
+      "id": 34957514,
+      "lat": 63.4276375,
+      "lon": 10.3966187
+    },
+    {
+      "type": "node",
+      "id": 34957520,
+      "lat": 63.4266363,
+      "lon": 10.3967891
+    },
+    {
+      "type": "node",
+      "id": 34957521,
+      "lat": 63.4270177,
+      "lon": 10.3980621
+    },
+    {
+      "type": "node",
+      "id": 68964693,
+      "lat": 63.4288429,
+      "lon": 10.3987811
+    },
+    {
+      "type": "node",
+      "id": 68964718,
+      "lat": 63.4290171,
+      "lon": 10.3940978
+    },
+    {
+      "type": "node",
+      "id": 68964746,
+      "lat": 63.4276073,
+      "lon": 10.3950125
+    },
+    {
+      "type": "node",
+      "id": 170898169,
+      "lat": 63.4288606,
+      "lon": 10.3981118
+    },
+    {
+      "type": "node",
+      "id": 170898176,
+      "lat": 63.4278444,
+      "lon": 10.3985732
+    },
+    {
+      "type": "node",
+      "id": 170898206,
+      "lat": 63.4284151,
+      "lon": 10.3982838
+    },
+    {
+      "type": "node",
+      "id": 170898211,
+      "lat": 63.427761,
+      "lon": 10.3974316
+    },
+    {
+      "type": "node",
+      "id": 181323612,
+      "lat": 63.4266892,
+      "lon": 10.3974346
+    },
+    {
+      "type": "node",
+      "id": 181323619,
+      "lat": 63.4271752,
+      "lon": 10.3974741
+    },
+    {
+      "type": "node",
+      "id": 181323620,
+      "lat": 63.4271278,
+      "lon": 10.3977944
+    },
+    {
+      "type": "node",
+      "id": 181323622,
+      "lat": 63.4268983,
+      "lon": 10.3980799
+    },
+    {
+      "type": "node",
+      "id": 181323628,
+      "lat": 63.4266491,
+      "lon": 10.3958487
+    },
+    {
+      "type": "node",
+      "id": 181323630,
+      "lat": 63.4270577,
+      "lon": 10.3949388
+    },
+    {
+      "type": "node",
+      "id": 181323632,
+      "lat": 63.4275919,
+      "lon": 10.396645
+    },
+    {
+      "type": "node",
+      "id": 181528971,
+      "lat": 63.426588,
+      "lon": 10.3948507
+    },
+    {
+      "type": "node",
+      "id": 220906509,
+      "lat": 63.4272113,
+      "lon": 10.3941661
+    },
+    {
+      "type": "node",
+      "id": 220906552,
+      "lat": 63.4275606,
+      "lon": 10.394116
+    },
+    {
+      "type": "node",
+      "id": 220906565,
+      "lat": 63.427037,
+      "lon": 10.3949334
+    },
+    {
+      "type": "node",
+      "id": 220906597,
+      "lat": 63.4272272,
+      "lon": 10.3949601
+    },
+    {
+      "type": "node",
+      "id": 248514729,
+      "lat": 63.4267684,
+      "lon": 10.3979287
+    },
+    {
+      "type": "node",
+      "id": 248514745,
+      "lat": 63.4273166,
+      "lon": 10.3949712
+    },
+    {
+      "type": "node",
+      "id": 248625189,
+      "lat": 63.4288009,
+      "lon": 10.4001344
+    },
+    {
+      "type": "node",
+      "id": 386579918,
+      "lat": 63.4283527,
+      "lon": 10.3962203
+    },
+    {
+      "type": "node",
+      "id": 386579919,
+      "lat": 63.4284397,
+      "lon": 10.3970759
+    },
+    {
+      "type": "node",
+      "id": 386579920,
+      "lat": 63.4278504,
+      "lon": 10.3973967
+    },
+    {
+      "type": "node",
+      "id": 1027304240,
+      "lat": 63.4284284,
+      "lon": 10.399338
+    },
+    {
+      "type": "node",
+      "id": 1030677488,
+      "lat": 63.4283852,
+      "lon": 10.3950215
+    },
+    {
+      "type": "node",
+      "id": 1030677491,
+      "lat": 63.4285219,
+      "lon": 10.3950055
+    },
+    {
+      "type": "node",
+      "id": 1030677492,
+      "lat": 63.427838,
+      "lon": 10.3951611
+    },
+    {
+      "type": "node",
+      "id": 1030677493,
+      "lat": 63.4285053,
+      "lon": 10.3944845
+    },
+    {
+      "type": "node",
+      "id": 1030677498,
+      "lat": 63.4283943,
+      "lon": 10.3944653
+    },
+    {
+      "type": "node",
+      "id": 1030677500,
+      "lat": 63.4278572,
+      "lon": 10.3943725
+    },
+    {
+      "type": "node",
+      "id": 1030677502,
+      "lat": 63.4283804,
+      "lon": 10.3947695
+    },
+    {
+      "type": "node",
+      "id": 1030677511,
+      "lat": 63.4285243,
+      "lon": 10.395263
+    },
+    {
+      "type": "node",
+      "id": 1030677512,
+      "lat": 63.4278561,
+      "lon": 10.3947215
+    },
+    {
+      "type": "node",
+      "id": 1030677521,
+      "lat": 63.4278548,
+      "lon": 10.3950914
+    },
+    {
+      "type": "node",
+      "id": 1030677525,
+      "lat": 63.4276219,
+      "lon": 10.3952336
+    },
+    {
+      "type": "node",
+      "id": 1037841817,
+      "lat": 63.4274709,
+      "lon": 10.3941279
+    },
+    {
+      "type": "node",
+      "id": 1139001807,
+      "lat": 63.4289539,
+      "lon": 10.3956281
+    },
+    {
+      "type": "node",
+      "id": 1139002045,
+      "lat": 63.4289215,
+      "lon": 10.3962277
+    },
+    {
+      "type": "node",
+      "id": 1139002296,
+      "lat": 63.4288639,
+      "lon": 10.3959398
+    },
+    {
+      "type": "node",
+      "id": 1139002505,
+      "lat": 63.4290233,
+      "lon": 10.3958529
+    },
+    {
+      "type": "node",
+      "id": 1139159471,
+      "lat": 63.4278413,
+      "lon": 10.3965007
+    },
+    {
+      "type": "node",
+      "id": 1139159506,
+      "lat": 63.4277214,
+      "lon": 10.3968471
+    },
+    {
+      "type": "node",
+      "id": 2333946670,
+      "lat": 63.4266486,
+      "lon": 10.3959867
+    },
+    {
+      "type": "node",
+      "id": 2333946671,
+      "lat": 63.426653,
+      "lon": 10.3950315
+    },
+    {
+      "type": "node",
+      "id": 2333946696,
+      "lat": 63.4270127,
+      "lon": 10.3949296
+    },
+    {
+      "type": "node",
+      "id": 2333946711,
+      "lat": 63.4271388,
+      "lon": 10.3964218
+    },
+    {
+      "type": "node",
+      "id": 2371362264,
+      "lat": 63.4281336,
+      "lon": 10.3972354
+    },
+    {
+      "type": "node",
+      "id": 2371362277,
+      "lat": 63.4282597,
+      "lon": 10.3983587
+    },
+    {
+      "type": "node",
+      "id": 2371362279,
+      "lat": 63.4283046,
+      "lon": 10.3971463
+    },
+    {
+      "type": "node",
+      "id": 2371362281,
+      "lat": 63.4283207,
+      "lon": 10.3973302
+    },
+    {
+      "type": "node",
+      "id": 2371362283,
+      "lat": 63.4283581,
+      "lon": 10.3977563
+    },
+    {
+      "type": "node",
+      "id": 2371362284,
+      "lat": 63.4283704,
+      "lon": 10.3978968
+    },
+    {
+      "type": "node",
+      "id": 2500113381,
+      "lat": 63.4278372,
+      "lon": 10.3984602
+    },
+    {
+      "type": "node",
+      "id": 2500113391,
+      "lat": 63.4279002,
+      "lon": 10.3985524
+    },
+    {
+      "type": "node",
+      "id": 2500113395,
+      "lat": 63.4279229,
+      "lon": 10.3997241
+    },
+    {
+      "type": "node",
+      "id": 2500113497,
+      "lat": 63.4283486,
+      "lon": 10.3976486
+    },
+    {
+      "type": "node",
+      "id": 2500113499,
+      "lat": 63.4283799,
+      "lon": 10.3980056
+    },
+    {
+      "type": "node",
+      "id": 2500113502,
+      "lat": 63.4284235,
+      "lon": 10.3984372
+    },
+    {
+      "type": "node",
+      "id": 2500113506,
+      "lat": 63.428633,
+      "lon": 10.3987682
+    },
+    {
+      "type": "node",
+      "id": 2500113508,
+      "lat": 63.428637,
+      "lon": 10.3985033
+    },
+    {
+      "type": "node",
+      "id": 2500113517,
+      "lat": 63.4287573,
+      "lon": 10.3983788
+    },
+    {
+      "type": "node",
+      "id": 2500113533,
+      "lat": 63.428881,
+      "lon": 10.3974386
+    },
+    {
+      "type": "node",
+      "id": 2500113535,
+      "lat": 63.4288862,
+      "lon": 10.39729
+    },
+    {
+      "type": "node",
+      "id": 2500113537,
+      "lat": 63.4288979,
+      "lon": 10.3970347
+    },
+    {
+      "type": "node",
+      "id": 2500113538,
+      "lat": 63.4289789,
+      "lon": 10.3972525
+    },
+    {
+      "type": "node",
+      "id": 3051860259,
+      "lat": 63.4275402,
+      "lon": 10.3950099
+    },
+    {
+      "type": "node",
+      "id": 3051860260,
+      "lat": 63.4275978,
+      "lon": 10.3948462
+    },
+    {
+      "type": "node",
+      "id": 3051860262,
+      "lat": 63.4276854,
+      "lon": 10.3963181
+    },
+    {
+      "type": "node",
+      "id": 3051860263,
+      "lat": 63.4286542,
+      "lon": 10.3940325
+    },
+    {
+      "type": "node",
+      "id": 3402834749,
+      "lat": 63.4274925,
+      "lon": 10.3941249
+    },
+    {
+      "type": "node",
+      "id": 3402834774,
+      "lat": 63.4276464,
+      "lon": 10.396613
+    },
+    {
+      "type": "node",
+      "id": 3402834783,
+      "lat": 63.4276708,
+      "lon": 10.3952208
+    },
+    {
+      "type": "node",
+      "id": 3402834864,
+      "lat": 63.4284125,
+      "lon": 10.3999547
+    },
+    {
+      "type": "node",
+      "id": 4367910615,
+      "lat": 63.4271642,
+      "lon": 10.396727
+    },
+    {
+      "type": "node",
+      "id": 7499364567,
+      "lat": 63.4283633,
+      "lon": 10.3963246
+    },
+    {
+      "type": "node",
+      "id": 7499364573,
+      "lat": 63.4283805,
+      "lon": 10.3964941
+    },
+    {
+      "type": "node",
+      "id": 7499364577,
+      "lat": 63.4288126,
+      "lon": 10.3981304
+    },
+    {
+      "type": "node",
+      "id": 7499364578,
+      "lat": 63.4287953,
+      "lon": 10.3987782
+    },
+    {
+      "type": "node",
+      "id": 7499370593,
+      "lat": 63.4289075,
+      "lon": 10.3980885
+    },
+    {
+      "type": "node",
+      "id": 7499370622,
+      "lat": 63.4289626,
+      "lon": 10.3940878
+    },
+    {
+      "type": "node",
+      "id": 8094747694,
+      "lat": 63.4283522,
+      "lon": 10.3954119
+    },
+    {
+      "type": "node",
+      "id": 8094747695,
+      "lat": 63.427961,
+      "lon": 10.3955228
+    },
+    {
+      "type": "node",
+      "id": 8094747696,
+      "lat": 63.4276368,
+      "lon": 10.3954876
+    },
+    {
+      "type": "node",
+      "id": 8094747697,
+      "lat": 63.4276859,
+      "lon": 10.3954799
+    },
+    {
+      "type": "node",
+      "id": 8094747698,
+      "lat": 63.4278757,
+      "lon": 10.3954562
+    },
+    {
+      "type": "node",
+      "id": 9817394247,
+      "lat": 63.428589,
+      "lon": 10.3940208
+    },
+    {
+      "type": "node",
+      "id": 33040670,
+      "lat": 63.4290494,
+      "lon": 10.3926155
+    },
+    {
+      "type": "node",
+      "id": 33847808,
+      "lat": 63.4291936,
+      "lon": 10.3893012
+    },
+    {
+      "type": "node",
+      "id": 34037196,
+      "lat": 63.4292261,
+      "lon": 10.3882718
+    },
+    {
+      "type": "node",
+      "id": 140405977,
+      "lat": 63.4292003,
+      "lon": 10.3891207
+    },
+    {
+      "type": "node",
+      "id": 152930268,
+      "lat": 63.4291334,
+      "lon": 10.3905611
+    },
+    {
+      "type": "node",
+      "id": 152930274,
+      "lat": 63.4291183,
+      "lon": 10.3909211
+    },
+    {
+      "type": "node",
+      "id": 152930300,
+      "lat": 63.4291881,
+      "lon": 10.3894571
+    },
+    {
+      "type": "node",
+      "id": 340282334,
+      "lat": 63.4292216,
+      "lon": 10.3884376
+    },
+    {
+      "type": "node",
+      "id": 1139001456,
+      "lat": 63.4291318,
+      "lon": 10.3925897
+    },
+    {
+      "type": "node",
+      "id": 1139001721,
+      "lat": 63.4290829,
+      "lon": 10.3918563
+    },
+    {
+      "type": "node",
+      "id": 1139001967,
+      "lat": 63.4290557,
+      "lon": 10.3923726
+    },
+    {
+      "type": "node",
+      "id": 1139002228,
+      "lat": 63.4290466,
+      "lon": 10.3927804
+    },
+    {
+      "type": "node",
+      "id": 3240331162,
+      "lat": 63.4294457,
+      "lon": 10.3935426
+    },
+    {
+      "type": "node",
+      "id": 4428305891,
+      "lat": 63.4295539,
+      "lon": 10.3924824
+    },
+    {
+      "type": "node",
+      "id": 7499370618,
+      "lat": 63.4291038,
+      "lon": 10.3934709
+    },
+    {
+      "type": "node",
+      "id": 33847824,
+      "lat": 63.4297942,
+      "lon": 10.3973832
+    },
+    {
+      "type": "node",
+      "id": 33847953,
+      "lat": 63.4298493,
+      "lon": 10.3953992
+    },
+    {
+      "type": "node",
+      "id": 170898165,
+      "lat": 63.4297571,
+      "lon": 10.3980602
+    },
+    {
+      "type": "node",
+      "id": 170898183,
+      "lat": 63.4295391,
+      "lon": 10.3955694
+    },
+    {
+      "type": "node",
+      "id": 170898191,
+      "lat": 63.4294077,
+      "lon": 10.3973045
+    },
+    {
+      "type": "node",
+      "id": 170898195,
+      "lat": 63.4293235,
+      "lon": 10.3980766
+    },
+    {
+      "type": "node",
+      "id": 7007039190,
+      "lat": 63.4295369,
+      "lon": 10.3980569
+    },
+    {
+      "type": "node",
+      "id": 9804189222,
+      "lat": 63.4298966,
+      "lon": 10.3953732
+    },
+    {
+      "type": "node",
+      "id": 10222549230,
+      "lat": 63.4297296,
+      "lon": 10.3980598
+    }
+  ]
+}
