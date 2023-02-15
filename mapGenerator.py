@@ -84,16 +84,25 @@ class MapGenerator:
         with open(filename, 'rt') as f:
             lats = []
             lons = []
-            length = int(f.readline())
-            for i in range(length):
+            intersections = []
+            meta = f.readline().split(' ')
+            intersectionCount = int(meta[0])
+            for i in range(intersectionCount):
+                intersection = f.readline().split(' ')
+                intersections.append(
+                    (float(intersection[0]), float(intersection[1])))
+
+            roadCount = int(meta[1])
+
+            for i in range(roadCount):
                 lat = f.readline().split(' ')
                 lats.append(lat)
 
-            for i in range(length):
+            for i in range(roadCount):
                 lon = f.readline().split(' ')
                 lons.append(lon)
 
-            for i in range(length):
+            for i in range(roadCount):
                 road = []
                 for j in range(len(lats[i])):
                     road.append((float(lats[i][j]), float(lons[i][j])))

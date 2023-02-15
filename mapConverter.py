@@ -33,11 +33,12 @@ with open('maps/mapKatta.json') as f:
                     nodes[node]["count"] += 2
 
     # convert the nodes to x and y coordinates and create a list of roads
-    roads = []
+    roads = {}
     for id in tqdm(ways):
         path = ways[id]
         x = []
         y = []
+        counts = []
         for node in path:
             lon = (nodes[node]["lon"])
             lat = (nodes[node]["lat"])
@@ -45,16 +46,48 @@ with open('maps/mapKatta.json') as f:
             x1, y1 = transformer.transform(lon, lat)
             x.append(x1)
             y.append(y1)
-        roads.append([x, y])
+            counts.append(nodes[node]["count"])
+        roads[id] = {"nodes": [x, y], "counts": counts}
 
     # find the smallest x and y values and subtract them from all x and y values
-    smallestX = min([min(road[0]) for road in roads if len(road[0]) > 0])
-    smallestY = min([min(road[1]) for road in roads if len(road[1]) > 0])
-    for road in roads:
-        road[0] = [x - smallestX for x in road[0]]
-        road[1] = [y - smallestY for y in road[1]]
+    smallestX = min([min(roads[id]["nodes"][0]) for id in roads])
+    smallestY = min([min(roads[id]["nodes"][1]) for id in roads])
+    for id in roads:
+        roads[id]["nodes"][0] = [x - smallestX for x in roads[id]["nodes"][0]]
+        roads[id]["nodes"][1] = [y - smallestY for y in roads[id]["nodes"][1]]
+
+    # merge roads that are connected and have a count of 2
+    for id in tqdm(roads.copy()):
+        if id not in roads:
+            continue
+        if roads[id]["counts"][0] == 2:
+            for id2 in roads.copy():
+                if roads[id]["nodes"][0][0] == roads[id2]["nodes"][0][-1] and roads[id]["nodes"][1][0] == roads[id2]["nodes"][1][-1]:
+                    roads[id]["nodes"][0] = roads[id2]["nodes"][0] + \
+                        roads[id]["nodes"][0]
+                    roads[id]["nodes"][1] = roads[id2]["nodes"][1] + \
+                        roads[id]["nodes"][1]
+                    roads[id]["counts"] = roads[id2]["counts"] + \
+                        roads[id]["counts"]
+                    del roads[id2]
+        if roads[id]["counts"][-1] == 2:
+            for id2 in roads.copy():
+                if roads[id]["nodes"][0][-1] == roads[id2]["nodes"][0][0] and roads[id]["nodes"][1][-1] == roads[id2]["nodes"][1][0]:
+                    roads[id]["nodes"][0] = roads[id]["nodes"][0] + \
+                        roads[id2]["nodes"][0]
+                    roads[id]["nodes"][1] = roads[id]["nodes"][1] + \
+                        roads[id2]["nodes"][1]
+                    roads[id]["counts"] = roads[id]["counts"] + \
+                        roads[id2]["counts"]
+                    del roads[id2]
+
+    # get all nodes with a count higher than 2
+    intersections = [node for node in nodes if nodes[node]["count"] > 2]
 
     # ------------------ Plot the data ------------------
+
+    roadParts = [road["nodes"] for road in roads.values()]
+    roads = roadParts
 
     # plot all roads
     for road in roads:
@@ -81,7 +114,15 @@ with open('maps/mapKatta.json') as f:
     with open('formattedMaps/mapKatta.txt', 'w') as f:
         # clear the file if it exists
         f.truncate(0)
-        f.write(str(len(roads))+"\n")
+        f.write(str(len(intersections)) + " " + str(len(roads))+"\n")
+        for intersection in intersections:
+            lon = (nodes[intersection]["lon"])
+            lat = (nodes[intersection]["lat"])
+            transformer = Transformer.from_crs("EPSG:4326", "EPSG:3857")
+            x1, y1 = transformer.transform(lon, lat)
+            x1 -= smallestX
+            y1 -= smallestY
+            f.write(str(x1) + " " + str(y1)+"\n")
         y = [road[0] for road in roads]
         x = [road[1] for road in roads]
         for i in range(len(roads)):
