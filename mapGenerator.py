@@ -75,7 +75,7 @@ class RoadGenerator:
 
 
 class MapGenerator:
-    def __init__(self, filename=None, distance=0.0001):
+    def __init__(self, filename=None, distance=4):
         self.filename = filename
         self.distance = distance
         self.roads = []
@@ -103,6 +103,7 @@ class MapGenerator:
         for road in self.roads:
             road_generator = RoadGenerator(points=road, distance=self.distance)
             road_generator.display_road()
+        plt.axis('equal')
         plt.show()
 
 
