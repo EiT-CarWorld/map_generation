@@ -100,18 +100,21 @@ class RoadGenerator:
         for i in range(len(self.second_edge_track)):
             polygon.append(self.second_edge_track[-i-1])
 
-        self.road_polygon = polygon
+        self.road_polygon = Polygon(polygon).buffer(0)
 
     def display_road(self):
         self.generate_track()
-        polygon = np.array(self.road_polygon)
-        plt.plot(polygon[:, 0], polygon[:, 1], 'k-')
+        x, y = self.road_polygon.exterior.xy
+        plt.plot(x, y, 'k-')
+
+        for interior in self.road_polygon.interiors:
+            x, y = interior.xy
+            plt.plot(x, y, 'k-')
 
 
 class MapGenerator:
     def __init__(self, road_polygons):
-        self.road_polygons = [Polygon(road_polygon)
-                              for road_polygon in road_polygons]
+        self.road_polygons = road_polygons
 
     def merge_roads(self):
         self.road_polygons = [polygon for polygon in self.road_polygons
