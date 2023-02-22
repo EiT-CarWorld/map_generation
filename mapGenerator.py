@@ -2,6 +2,8 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 from mapConverter import MapConverter
+from shapely.ops import unary_union
+from shapely.geometry import Polygon
 
 
 class RoadGenerator:
@@ -12,6 +14,7 @@ class RoadGenerator:
         self.first_edge_track = []
         self.second_edge_track = []
         self.border_points = [[], []]
+        self.road_polygon = None
 
     def points_to_vector(self, p1, p2):
         # return the vector from p1 to p2
@@ -86,9 +89,7 @@ class RoadGenerator:
             self.get_border_points(self.points[i], self.points[i + 1],
                                    self.points[i + 2])
         self.get_end_points(self.points[-2], self.points[-1], start=False)
-
-    def get_tracks(self):
-        return self. points, self.first_edge_track, self.second_edge_track
+        self.create_polygon()
 
     def create_polygon(self):
         polygon = self.border_points[0][::-1]
@@ -99,19 +100,58 @@ class RoadGenerator:
         for i in range(len(self.second_edge_track)):
             polygon.append(self.second_edge_track[-i-1])
 
-        return polygon
+        self.road_polygon = polygon
 
     def display_road(self):
         self.generate_track()
-        polygon = self.create_polygon()
-        polygon = np.array(polygon)
+        polygon = np.array(self.road_polygon)
         plt.plot(polygon[:, 0], polygon[:, 1], 'k-')
 
 
-if __name__ == '__main__':
+class MapGenerator:
+    def __init__(self, road_polygons):
+        self.road_polygons = [Polygon(road_polygon)
+                              for road_polygon in road_polygons]
 
-    RG = RoadGenerator([(0, 0), (1, 1), (2, 1), (3, 2)], distance=0.5)
-    RG.display_road()
-    RG2 = RoadGenerator([(5, 7), (3, 6), (3, 3), (3, 2)], distance=0.5)
+    def merge_roads(self):
+        return unary_union(self.road_polygons)
+
+    def display_map(self):
+        map = self.merge_roads()
+        x, y = map.exterior.xy
+        plt.plot(x, y, 'k-')
+        plt.show()
+
+
+if __name__ == '__main__':
+    RG1 = RoadGenerator([[0, 0], [0, 1], [2, 1], [4, 4]], distance=0.5)
+    RG1.display_road()
+    RG2 = RoadGenerator([[7, 8], [6, 6], [6, 4], [4, 4]], distance=0.5)
     RG2.display_road()
+    RG3 = RoadGenerator([[0, 9], [1, 7], [3, 4], [4, 4]], distance=0.5)
+    RG3.display_road()
+    RG4 = RoadGenerator([[0, 9], [3, 9], [6, 8], [7, 8]], distance=0.5)
+    RG4.display_road()
     plt.show()
+
+    MG = MapGenerator([RG1.road_polygon, RG2.road_polygon,
+                      RG3.road_polygon, RG4.road_polygon])
+    MG.display_map()
+
+    """
+    MC = MapConverter("maps/mapKatta.json")
+    MC.create_map()
+    roads = [([[road[0][i], road[1][i]] for i in range(len(road[0]))])
+             for road in MC.roads]
+
+    print(roads)
+    road_polygons = []
+    for road in roads:
+        RG = RoadGenerator(road, distance=4)
+        RG.display_road()
+        road_polygons.append(RG.road_polygon)
+    plt.show()
+
+    MG = MapGenerator(road_polygons)
+    MG.display_map()
+    """
