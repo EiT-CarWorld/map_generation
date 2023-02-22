@@ -1,6 +1,7 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+from mapConverter import MapConverter
 
 
 class RoadGenerator:
@@ -10,6 +11,7 @@ class RoadGenerator:
         self.points = points
         self.first_edge_track = []
         self.second_edge_track = []
+        self.border_points = [[], []]
 
     def points_to_vector(self, p1, p2):
         # return the vector from p1 to p2
@@ -53,70 +55,63 @@ class RoadGenerator:
         self.first_edge_track.append(self.add_vectors(p2, top))
         self.second_edge_track.append(self.add_vectors(p2, bottom))
 
+    def get_end_points(self, p1, p2, start):
+        v1 = self.points_to_vector(p1, p2)
+        v1 = self.normalize_vector(v1)
+        v3 = self.scale_vector_to_size(v1, self.distance)
+
+        top = self.rotate_vector(v3, math.pi / 2)
+        bottom = self.rotate_vector(v3, -math.pi / 2)
+
+        # add 5 border points rotating around the end point in a half circle
+        for i in range(9):
+            angle = math.pi / 2 * i / 4
+            if start:
+                self.border_points[0].append(self.add_vectors(
+                    p1, self.rotate_vector(top, angle)))
+            else:
+                self.border_points[1].append(self.add_vectors(
+                    p2, self.rotate_vector(bottom, angle)))
+
+        if start:
+            self.first_edge_track.append(self.add_vectors(p1, top))
+            self.second_edge_track.append(self.add_vectors(p1, bottom))
+        else:
+            self.first_edge_track.append(self.add_vectors(p2, top))
+            self.second_edge_track.append(self.add_vectors(p2, bottom))
+
     def generate_track(self):
+        self.get_end_points(self.points[0], self.points[1], start=True)
         for i in range(len(self.points) - 2):
             self.get_border_points(self.points[i], self.points[i + 1],
                                    self.points[i + 2])
+        self.get_end_points(self.points[-2], self.points[-1], start=False)
 
     def get_tracks(self):
         return self. points, self.first_edge_track, self.second_edge_track
 
+    def create_polygon(self):
+        polygon = self.border_points[0][::-1]
+        for i in range(len(self.first_edge_track)):
+            polygon.append(self.first_edge_track[i])
+        for i in range(len(self.border_points[1])):
+            polygon.append(self.border_points[1][-i-1])
+        for i in range(len(self.second_edge_track)):
+            polygon.append(self.second_edge_track[-i-1])
+
+        return polygon
+
     def display_road(self):
         self.generate_track()
-        x = [p[0] for p in self.points]
-        y = [p[1] for p in self.points]
-        plt.plot(x, y, 'b-')
-        x = [p[0] for p in self.first_edge_track]
-        y = [p[1] for p in self.first_edge_track]
-        plt.plot(x, y, 'k-')
-        x = [p[0] for p in self.second_edge_track]
-        y = [p[1] for p in self.second_edge_track]
-        plt.plot(x, y, 'k-')
-
-
-class MapGenerator:
-    def __init__(self, filename=None, distance=4):
-        self.filename = filename
-        self.distance = distance
-        self.roads = []
-
-    def get_roads(self, filename):
-        with open(filename, 'rt') as f:
-            lats = []
-            lons = []
-            intersections = []
-            meta = f.readline().split(' ')
-            intersectionCount = int(meta[0])
-            for i in range(intersectionCount):
-                intersection = f.readline().split(' ')
-                intersections.append(
-                    (float(intersection[0]), float(intersection[1])))
-
-            roadCount = int(meta[1])
-
-            for i in range(roadCount):
-                lat = f.readline().split(' ')
-                lats.append(lat)
-
-            for i in range(roadCount):
-                lon = f.readline().split(' ')
-                lons.append(lon)
-
-            for i in range(roadCount):
-                road = []
-                for j in range(len(lats[i])):
-                    road.append((float(lats[i][j]), float(lons[i][j])))
-                self.roads.append(road)
-
-    def display_map(self):
-        for road in self.roads:
-            road_generator = RoadGenerator(points=road, distance=self.distance)
-            road_generator.display_road()
-        plt.axis('equal')
-        plt.show()
+        polygon = self.create_polygon()
+        polygon = np.array(polygon)
+        plt.plot(polygon[:, 0], polygon[:, 1], 'k-')
 
 
 if __name__ == '__main__':
-    map_generator = MapGenerator("formattedMaps/mapKatta.txt")
-    map_generator.get_roads("formattedMaps/mapKatta.txt")
-    map_generator.display_map()
+
+    RG = RoadGenerator([(0, 0), (1, 1), (2, 1), (3, 2)], distance=0.5)
+    RG.display_road()
+    RG2 = RoadGenerator([(5, 7), (3, 6), (3, 3), (3, 2)], distance=0.5)
+    RG2.display_road()
+    plt.show()

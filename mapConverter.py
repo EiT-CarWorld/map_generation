@@ -66,7 +66,6 @@ class MapConverter:
     # ------------------ Plot the data ------------------
 
     def plot_data(self):
-        nodes = self.nodes
         roads = self.roads
 
         # plot all roads
@@ -97,5 +96,5 @@ class MapConverter:
 
 
 if __name__ == "__main__":
-    map = MapConverter("maps/circleHell.json")
+    map = MapConverter("maps/mapKatta.json")
     map.create_map()
