@@ -1,6 +1,7 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 from mapConverter import MapConverter
 from shapely.ops import unary_union
 from shapely.geometry import Polygon
@@ -66,7 +67,7 @@ class RoadGenerator:
         top = self.rotate_vector(v3, math.pi / 2)
         bottom = self.rotate_vector(v3, -math.pi / 2)
 
-        # add 5 border points rotating around the end point in a half circle
+        # add 9 border points rotating around the end point in a half circle
         for i in range(9):
             angle = math.pi / 2 * i / 4
             if start:
@@ -140,15 +141,16 @@ class MapGenerator:
 if __name__ == '__main__':
     MC = MapConverter("maps/mapTrondheim.json")
     MC.create_map()
-    roads = [([[road[1][i], road[0][i]] for i in range(len(road[0]))])
+    roads = [([[road[0][1][i], road[0][0][i]] for i in range(len(road[0][0]))])
              for road in MC.roads]
 
-    road_polygons = []
-    for road in roads:
-        RG = RoadGenerator(road, distance=6)
-        RG.display_road()
-        road_polygons.append(RG.road_polygon)
-    plt.show()
+    oneway_roads = [road[1] for road in MC.roads]
 
+    road_polygons = []
+    print("Generating roads...")
+    for i in range(len(roads)):
+        RG = RoadGenerator(roads[i], distance=(3 if oneway_roads[i] else 6))
+        RG.generate_track()
+        road_polygons.append(RG.road_polygon)
     MG = MapGenerator(road_polygons)
     MG.display_map()
