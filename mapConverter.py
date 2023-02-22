@@ -93,8 +93,3 @@ class MapConverter:
         self.read_data()
         self.convert_to_coordinates()
         self.plot_data()
-
-
-if __name__ == "__main__":
-    map = MapConverter("maps/mapKatta.json")
-    map.create_map()
