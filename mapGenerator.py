@@ -116,16 +116,20 @@ class RoadGenerator:
 class MapGenerator:
     def __init__(self, road_polygons):
         self.road_polygons = road_polygons
+        self.road_network = None
 
     def merge_roads(self):
         self.road_polygons = [polygon for polygon in self.road_polygons
                               if polygon.is_valid]
 
+        print("Merging roads...")
         merged = unary_union(self.road_polygons)
 
         if merged.geom_type == 'MultiPolygon':
             merged = max(merged.geoms, key=lambda x: x.area)
 
+        self.road_network = merged
+        print("Road network creation complete!")
         return merged
 
     def display_map(self):
@@ -139,7 +143,7 @@ class MapGenerator:
 
 
 if __name__ == '__main__':
-    MC = MapConverter("maps/mapTrondheim.json")
+    MC = MapConverter("maps/oslo.json")
     MC.create_map()
     roads = [([[road[0][1][i], road[0][0][i]] for i in range(len(road[0][0]))])
              for road in MC.roads]
@@ -148,7 +152,7 @@ if __name__ == '__main__':
 
     road_polygons = []
     print("Generating roads...")
-    for i in range(len(roads)):
+    for i in tqdm(range(len(roads))):
         RG = RoadGenerator(roads[i], distance=(3 if oneway_roads[i] else 6))
         RG.generate_track()
         road_polygons.append(RG.road_polygon)
