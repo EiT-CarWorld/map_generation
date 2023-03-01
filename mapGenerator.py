@@ -191,37 +191,46 @@ if __name__ == '__main__':
 
     print("Formatting data...")
 
+    id_locations = {}
     new_nodes = []
-    for id in tqdm(nodes):
+    for id in nodes:
         if "x" not in nodes[id]:
             continue
         new_nodes.append([nodes[id]["x"], nodes[id]["y"]])
-        # TODO: make dict keeping track of where each id is used
-        new_roads = [len(new_nodes)-1 if i == id else i for i in new_roads]
+        id_locations[id] = len(new_nodes)
+    for i in range(len(new_roads)):
+        elem = new_roads[i]
+        new_roads[i] = id_locations[elem] if elem in id_locations else elem
 
-    total_poly_lines = len(poly.exterior.xy[0]-1)
+    total_poly_lines = len(poly.exterior.xy[0])-1
     for interior in poly.interiors:
-        total_poly_lines += len(interior.xy[0]-1)
+        total_poly_lines += len(interior.xy[0])-1
 
     print("Writing to file...")
     with open("formattedMaps/trondheim.txt", "w") as f:
         f.truncate(0)
         f.write(f"{len(new_nodes)} {len(new_roads)//3}\n")
         f.write(
-            f"{len(total_poly_lines)} {len(vertices)} {len(triangles)//3}\n")
-        for node in new_nodes:
+            f"{total_poly_lines} {len(vertices)} {len(triangles)//3}\n")
+        print("Nodes:")
+        for node in tqdm(new_nodes):
             f.write(f"{node[0]} {node[1]}\n")
-        for i in range(0, len(new_roads)-2, 3):
+        print("Roads:")
+        for i in tqdm(range(0, len(new_roads)-2, 3)):
             f.write(
                 f"{['T','O'][new_roads[i]]} {new_roads[i+1]} {new_roads[i+2]}\n")
-        for i in range(len(poly.exterior.xy[0])-1):
+        print("Lines:")
+        for i in tqdm(range(len(poly.exterior.xy[0])-1)):
             f.write(
                 f"{poly.exterior.xy[0][i]} {poly.exterior.xy[1][i]} {poly.exterior.xy[0][i+1]} {poly.exterior.xy[1][i+1]}\n")
-        for interior in poly.interiors:
+        for interior in tqdm(poly.interiors):
             for i in range(len(interior.xy[0])-1):
                 f.write(
                     f"{interior.xy[0][i]} {interior.xy[1][i]} {interior.xy[0][i+1]} {interior.xy[1][i+1]}\n")
-        for vertex in vertices:
+        print("Triangulation:")
+        for vertex in tqdm(vertices):
             f.write(f"{vertex[0]} {vertex[1]}\n")
-        for i in range(0, len(triangles)-2, 3):
+        for i in tqdm(range(0, len(triangles)-2, 3)):
             f.write(f"{triangles[i]} {triangles[i+1]} {triangles[i+2]}\n")
+
+    print("All done!")
