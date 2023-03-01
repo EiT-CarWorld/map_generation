@@ -5,6 +5,7 @@ from tqdm import tqdm
 from mapConverter import MapConverter
 from shapely.ops import unary_union
 from shapely.geometry import Polygon
+import mapbox_earcut as earcut
 
 
 class RoadGenerator:
@@ -130,16 +131,38 @@ class MapGenerator:
 
         self.road_network = merged
         print("Road network creation complete!")
-        return merged
 
     def display_map(self):
-        map = self.merge_roads()
+        map = self.road_network
         x, y = map.exterior.xy
         plt.plot(x, y, 'k-')
         for interior in map.interiors:
             x, y = interior.xy
             plt.plot(x, y, 'k-')
-        plt.show()
+        # plt.show()
+
+    def triangulate(self):
+        poly = self.road_network
+
+        vertices = list(zip(poly.exterior.xy[0], poly.exterior.xy[1]))
+        holes = [list(zip(interior.xy[0], interior.xy[1]))
+                 for interior in poly.interiors]
+
+        # get hole indexes
+        hole_indexes = [len(vertices)]
+        for hole in holes:
+            hole_indexes.append(hole_indexes[-1] + len(hole))
+
+        # add all hole coordinated to vertices
+        for hole in holes:
+            vertices += hole
+
+        print("Triangulating...")
+
+        # Triangulate the polygon using earcut
+        triangles = earcut.triangulate_float32(vertices, hole_indexes)
+
+        return vertices, triangles
 
 
 if __name__ == '__main__':
@@ -157,4 +180,15 @@ if __name__ == '__main__':
         RG.generate_track()
         road_polygons.append(RG.road_polygon)
     MG = MapGenerator(road_polygons)
-    MG.display_map()
+    MG.merge_roads()
+
+    vertices, triangles = MG.triangulate()
+
+    print("Displaying map...")
+    fig, ax = plt.subplots()
+    for i in tqdm(range(0, len(triangles), 3)):
+        points = np.array([vertices[triangles[i]], vertices[triangles[i+1]],
+                           vertices[triangles[i+2]]])
+        ax.plot(points[:, 0], points[:, 1], 'k-')
+
+    plt.show()
