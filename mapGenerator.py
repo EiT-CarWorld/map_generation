@@ -143,7 +143,7 @@ class MapGenerator:
 
 
 if __name__ == '__main__':
-    MC = MapConverter("maps/oslo.json")
+    MC = MapConverter("maps/trondheim.json")
     MC.create_map()
     roads = [([[road[0][1][i], road[0][0][i]] for i in range(len(road[0][0]))])
              for road in MC.roads]
