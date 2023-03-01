@@ -11,6 +11,7 @@ class MapConverter:
         self.nodes = None
         self.ways = None
         self.roads = None
+        self.local_roads = []
 
     # ------------------ Read the data ------------------
 
@@ -44,13 +45,19 @@ class MapConverter:
             path = ways[id][0]
             x = []
             y = []
+            ids = []
             for node in path:
                 lon = (nodes[node]["lon"])
                 lat = (nodes[node]["lat"])
                 x1, y1 = transformer.transform(lon, lat)
                 x.append(x1)
                 y.append(y1)
+                # add x and y to nodes
+                nodes[node]["x"] = x1
+                nodes[node]["y"] = y1
+                ids.extend([node, ways[id][1], node])
             roads.append([[x, y], ways[id][1]])
+            self.local_roads.extend(ids[1:-2])
 
         # find the smallest x and y values and subtract them from all x and y values
         smallestX = min([min(road[0][0]) for road in roads])

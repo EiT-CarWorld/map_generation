@@ -6,6 +6,7 @@ from mapConverter import MapConverter
 from shapely.ops import unary_union
 from shapely.geometry import Polygon
 import mapbox_earcut as earcut
+import itertools
 
 
 class RoadGenerator:
@@ -184,11 +185,43 @@ if __name__ == '__main__':
 
     vertices, triangles = MG.triangulate()
 
-    print("Displaying map...")
-    fig, ax = plt.subplots()
-    for i in tqdm(range(0, len(triangles), 3)):
-        points = np.array([vertices[triangles[i]], vertices[triangles[i+1]],
-                           vertices[triangles[i+2]]])
-        ax.plot(points[:, 0], points[:, 1], 'k-')
+    poly = MG.road_network
+    new_roads = MC.local_roads
+    nodes = MC.nodes
 
-    plt.show()
+    print("Formatting data...")
+
+    new_nodes = []
+    for id in tqdm(nodes):
+        if "x" not in nodes[id]:
+            continue
+        new_nodes.append([nodes[id]["x"], nodes[id]["y"]])
+        # TODO: make dict keeping track of where each id is used
+        new_roads = [len(new_nodes)-1 if i == id else i for i in new_roads]
+
+    total_poly_lines = len(poly.exterior.xy[0]-1)
+    for interior in poly.interiors:
+        total_poly_lines += len(interior.xy[0]-1)
+
+    print("Writing to file...")
+    with open("formattedMaps/trondheim.txt", "w") as f:
+        f.truncate(0)
+        f.write(f"{len(new_nodes)} {len(new_roads)//3}\n")
+        f.write(
+            f"{len(total_poly_lines)} {len(vertices)} {len(triangles)//3}\n")
+        for node in new_nodes:
+            f.write(f"{node[0]} {node[1]}\n")
+        for i in range(0, len(new_roads)-2, 3):
+            f.write(
+                f"{['T','O'][new_roads[i]]} {new_roads[i+1]} {new_roads[i+2]}\n")
+        for i in range(len(poly.exterior.xy[0])-1):
+            f.write(
+                f"{poly.exterior.xy[0][i]} {poly.exterior.xy[1][i]} {poly.exterior.xy[0][i+1]} {poly.exterior.xy[1][i+1]}\n")
+        for interior in poly.interiors:
+            for i in range(len(interior.xy[0])-1):
+                f.write(
+                    f"{interior.xy[0][i]} {interior.xy[1][i]} {interior.xy[0][i+1]} {interior.xy[1][i+1]}\n")
+        for vertex in vertices:
+            f.write(f"{vertex[0]} {vertex[1]}\n")
+        for i in range(0, len(triangles)-2, 3):
+            f.write(f"{triangles[i]} {triangles[i+1]} {triangles[i+2]}\n")
