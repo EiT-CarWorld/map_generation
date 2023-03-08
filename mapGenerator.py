@@ -177,11 +177,14 @@ if __name__ == '__main__':
     road_polygons = []
     print("Generating roads...")
     for i in tqdm(range(len(roads))):
-        RG = RoadGenerator(roads[i], distance=(3 if oneway_roads[i] else 6))
+        RG = RoadGenerator(roads[i], distance=(3 if oneway_roads[i] else 5))
         RG.generate_track()
         road_polygons.append(RG.road_polygon)
     MG = MapGenerator(road_polygons)
     MG.merge_roads()
+
+    MG.display_map()
+    plt.show()
 
     vertices, triangles = MG.triangulate()
 

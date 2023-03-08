@@ -27,7 +27,7 @@ class MapConverter:
                         if element["type"] == "node"]
             nodes = {node["id"]: node for node in nodeList}
             ways = {element["id"]: [element["nodes"], "oneway" in element["tags"]] for element in data["elements"]
-                    if element["type"] == "way"}
+                    if element["type"] == "way" and "tunnel" not in element["tags"]}
 
             self.data = data
             self.nodes = nodes
