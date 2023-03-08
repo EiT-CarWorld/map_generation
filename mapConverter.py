@@ -51,7 +51,7 @@ class MapConverter:
             for node in path:
                 lon = (nodes[node]["lon"])
                 lat = (nodes[node]["lat"])
-                x1, y1 = transformer.transform(lon, lat)
+                y1, x1 = transformer.transform(lon, lat)
                 x.append(x1)
                 y.append(y1)
                 # add x and y to nodes
@@ -82,7 +82,7 @@ class MapConverter:
 
         # plot all roads
         for road in roads:
-            plt.plot(road[0][1], road[0][0], 'k-')
+            plt.plot(road[0][0], road[0][1], 'k-')
         plt.show()
 
     def create_map(self):

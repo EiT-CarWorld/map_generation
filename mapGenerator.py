@@ -169,7 +169,7 @@ class MapGenerator:
 if __name__ == '__main__':
     MC = MapConverter("maps/trondheim.json")
     MC.create_map()
-    roads = [([[road[0][1][i], road[0][0][i]] for i in range(len(road[0][0]))])
+    roads = [([[road[0][0][i], road[0][1][i]] for i in range(len(road[0][0]))])
              for road in MC.roads]
 
     oneway_roads = [road[1] for road in MC.roads]
@@ -196,8 +196,9 @@ if __name__ == '__main__':
     for id in nodes:
         if "x" not in nodes[id]:
             continue
-        new_nodes.append([nodes[id]["x"], nodes[id]["y"]])
         id_locations[id] = len(new_nodes)
+        new_nodes.append([nodes[id]["x"], nodes[id]["y"]])
+
     for i in range(len(new_roads)):
         elem = new_roads[i]
         new_roads[i] = id_locations[elem] if elem in id_locations else elem
@@ -224,13 +225,15 @@ if __name__ == '__main__':
             f.write(
                 f"{['T','O'][new_roads[i]]} {new_roads[i+1]} {new_roads[i+2]}\n")
         print("Lines:")
-        for i in tqdm(range(len(poly.exterior.xy[0])-1)):
+        exterior_coords = poly.exterior.xy
+        for i in tqdm(range(len(exterior_coords[0])-1)):
             f.write(
-                f"{poly.exterior.xy[0][i]} {poly.exterior.xy[1][i]} {poly.exterior.xy[0][i+1]} {poly.exterior.xy[1][i+1]}\n")
+                f"{exterior_coords[0][i]} {exterior_coords[1][i]} {exterior_coords[0][i+1]} {exterior_coords[1][i+1]}\n")
         for interior in tqdm(poly.interiors):
-            for i in range(len(interior.xy[0])-1):
+            interior_coords = interior.xy
+            for i in range(len(interior_coords[0])-1):
                 f.write(
-                    f"{interior.xy[0][i]} {interior.xy[1][i]} {interior.xy[0][i+1]} {interior.xy[1][i+1]}\n")
+                    f"{interior_coords[0][i]} {interior_coords[1][i]} {interior_coords[0][i+1]} {interior_coords[1][i+1]}\n")
         print("Triangulation:")
         for vertex in tqdm(vertices):
             f.write(f"{vertex[0]} {vertex[1]}\n")
