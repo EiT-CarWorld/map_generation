@@ -52,6 +52,7 @@ class MapConverter:
                 lon = (nodes[node]["lon"])
                 lat = (nodes[node]["lat"])
                 y1, x1 = transformer.transform(lon, lat)
+                y1 *= 2.23563
                 x.append(x1)
                 y.append(y1)
                 # add x and y to nodes
