@@ -202,6 +202,10 @@ if __name__ == '__main__':
         elem = new_roads[i]
         new_roads[i] = id_locations[elem] if elem in id_locations else elem
 
+    for i in range(len(new_nodes)):
+        new_nodes[i][0] -= MC.smallestX
+        new_nodes[i][1] -= MC.smallestY
+
     total_poly_lines = len(poly.exterior.xy[0])-1
     for interior in poly.interiors:
         total_poly_lines += len(interior.xy[0])-1

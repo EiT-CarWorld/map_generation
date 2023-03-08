@@ -12,6 +12,8 @@ class MapConverter:
         self.ways = None
         self.roads = None
         self.local_roads = []
+        self.smallestX = None
+        self.smallestY = None
 
     # ------------------ Read the data ------------------
 
@@ -62,6 +64,8 @@ class MapConverter:
         # find the smallest x and y values and subtract them from all x and y values
         smallestX = min([min(road[0][0]) for road in roads])
         smallestY = min([min(road[0][1]) for road in roads])
+        self.smallestX = smallestX
+        self.smallestY = smallestY
 
         for i in range(len(roads)):
             roads[i][0][0] = [
