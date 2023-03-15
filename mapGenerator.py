@@ -167,7 +167,7 @@ class MapGenerator:
 
 
 if __name__ == '__main__':
-    MC = MapConverter("maps/simple_intersection.json")
+    MC = MapConverter("maps/roundabout.json")
     MC.create_map()
     roads = [([[road[0][0][i], road[0][1][i]] for i in range(len(road[0][0]))])
              for road in MC.roads]
@@ -214,7 +214,7 @@ if __name__ == '__main__':
         total_poly_lines += len(interior.xy[0])-1
 
     print("Writing to file...")
-    with open("formattedMaps/simple_intersection.txt", "w") as f:
+    with open("formattedMaps/roundabout.txt", "w") as f:
         f.truncate(0)
         f.write(f"{len(new_nodes)} {len(new_roads)//3}\n")
         f.write(
