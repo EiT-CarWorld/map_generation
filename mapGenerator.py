@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 from mapConverter import MapConverter
 from shapely.ops import unary_union
-from shapely.geometry import Polygon
+from shapely.geometry import Polygon, Point
 import mapbox_earcut as earcut
 import itertools
 
@@ -167,7 +167,7 @@ class MapGenerator:
 
 
 if __name__ == '__main__':
-    MC = MapConverter("maps/roundabout.json")
+    MC = MapConverter("maps/multiple_roads.json")
     MC.create_map()
     roads = [([[road[0][0][i], road[0][1][i]] for i in range(len(road[0][0]))])
              for road in MC.roads]
@@ -191,30 +191,37 @@ if __name__ == '__main__':
     new_roads = MC.local_roads
     nodes = MC.nodes
 
-    print("Formatting data...")
+    print("Deleting rogue nodes...")
 
     id_locations = {}
     new_nodes = []
-    for id in nodes:
+    for id in tqdm(nodes):
         if "x" not in nodes[id]:
             continue
+        node_x = nodes[id]["x"] - MC.smallestX
+        node_y = nodes[id]["y"] - MC.smallestY
+        point = Point(node_x, node_y)
+        if not poly.contains(point):
+            continue
+
         id_locations[id] = len(new_nodes)
-        new_nodes.append([nodes[id]["x"], nodes[id]["y"]])
+        new_nodes.append([node_x, node_y])
 
-    for i in range(len(new_roads)):
-        elem = new_roads[i]
-        new_roads[i] = id_locations[elem] if elem in id_locations else elem
+    newer_roads = []
+    for i in range(0, len(new_roads), 3):
+        elem = [new_roads[i], new_roads[i+1], new_roads[i+2]]
+        if elem[1] in id_locations and elem[2] in id_locations:
+            newer_roads.extend(
+                [elem[0], id_locations[elem[1]], id_locations[elem[2]]])
 
-    for i in range(len(new_nodes)):
-        new_nodes[i][0] -= MC.smallestX
-        new_nodes[i][1] -= MC.smallestY
+    new_roads = newer_roads
 
     total_poly_lines = len(poly.exterior.xy[0])-1
     for interior in poly.interiors:
         total_poly_lines += len(interior.xy[0])-1
 
     print("Writing to file...")
-    with open("formattedMaps/roundabout.txt", "w") as f:
+    with open("formattedMaps/multiple_roads.txt", "w") as f:
         f.truncate(0)
         f.write(f"{len(new_nodes)} {len(new_roads)//3}\n")
         f.write(
