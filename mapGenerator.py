@@ -167,7 +167,7 @@ class MapGenerator:
 
 
 if __name__ == '__main__':
-    MC = MapConverter("maps/multiple_roads.json")
+    MC = MapConverter("maps/trondheim.json")
     MC.create_map()
     roads = [([[road[0][0][i], road[0][1][i]] for i in range(len(road[0][0]))])
              for road in MC.roads]
@@ -181,9 +181,6 @@ if __name__ == '__main__':
         road_polygons.append(RG.road_polygon)
     MG = MapGenerator(road_polygons)
     MG.merge_roads()
-
-    MG.display_map()
-    plt.show()
 
     vertices, triangles = MG.triangulate()
 
@@ -200,20 +197,52 @@ if __name__ == '__main__':
             continue
         node_x = nodes[id]["x"] - MC.smallestX
         node_y = nodes[id]["y"] - MC.smallestY
-        point = Point(node_x, node_y)
-        if not poly.contains(point):
-            continue
-
         id_locations[id] = len(new_nodes)
-        new_nodes.append([node_x, node_y])
+        new_nodes.append((node_x, node_y))
+
+    node_parent = list(range(len(new_nodes)))
+
+    def parent(u):
+        if node_parent[u] == u:
+            return u
+        node_parent[u] = parent(node_parent[u])
+        return node_parent[u]
+
+    def union(u, v):
+        u, v = parent(u), parent(v)
+        if u != v:
+            node_parent[u] = v
 
     newer_roads = []
     for i in range(0, len(new_roads), 3):
         elem = [new_roads[i], new_roads[i+1], new_roads[i+2]]
         if elem[1] in id_locations and elem[2] in id_locations:
-            newer_roads.extend(
-                [elem[0], id_locations[elem[1]], id_locations[elem[2]]])
+            u, v = id_locations[elem[1]], id_locations[elem[2]]
+            newer_roads.append((elem[0], u, v))
+            union(u, v)
 
+    new_roads = newer_roads
+
+    # Remove all nodes and roads not in the main polygon
+    # First find a node in poly
+
+    for i, node in enumerate(new_nodes):
+        if poly.contains(Point(*node)):
+            break
+
+    super_parent = parent(i)
+    new_ids = {}
+    newer_nodes = []
+    for i, node in enumerate(new_nodes):
+        if parent(i) == super_parent:
+            new_ids[i] = len(newer_nodes)
+            newer_nodes.append(node)
+    new_nodes = newer_nodes
+
+    newer_roads = []
+    for dir, u, v in new_roads:
+        if parent(u) == super_parent:
+            newer_roads.append((dir, new_ids[u], new_ids[v]))
     new_roads = newer_roads
 
     total_poly_lines = len(poly.exterior.xy[0])-1
@@ -221,18 +250,18 @@ if __name__ == '__main__':
         total_poly_lines += len(interior.xy[0])-1
 
     print("Writing to file...")
-    with open("formattedMaps/multiple_roads.txt", "w") as f:
+    with open("formattedMaps/trondheim.txt", "w") as f:
         f.truncate(0)
-        f.write(f"{len(new_nodes)} {len(new_roads)//3}\n")
+        f.write(f"{len(new_nodes)} {len(new_roads)}\n")
         f.write(
             f"{total_poly_lines} {len(vertices)} {len(triangles)//3}\n")
         print("Nodes:")
         for node in tqdm(new_nodes):
             f.write(f"{node[0]} {node[1]}\n")
         print("Roads:")
-        for i in tqdm(range(0, len(new_roads)-2, 3)):
+        for dir, u, v in tqdm(new_roads):
             f.write(
-                f"{['T','O'][new_roads[i]]} {new_roads[i+1]} {new_roads[i+2]}\n")
+                f"{['T','O'][dir]} {u} {v}\n")
         print("Lines:")
         exterior_coords = poly.exterior.xy
         for i in tqdm(range(len(exterior_coords[0])-1)):
