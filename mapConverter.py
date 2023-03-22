@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 import json
 from pyproj import Transformer
+from haversine import haversine, Unit
 
 
 class MapConverter:
@@ -42,7 +43,6 @@ class MapConverter:
         # convert the nodes to x and y coordinates and create a list of roads
         roads = []
         print("Converting map data to local coordinates...")
-        transformer = Transformer.from_crs("EPSG:4326", "EPSG:3857")
         for id in tqdm(ways):
             path = ways[id][0]
             x = []
@@ -51,8 +51,8 @@ class MapConverter:
             for node in path:
                 lon = (nodes[node]["lon"])
                 lat = (nodes[node]["lat"])
-                y1, x1 = transformer.transform(lon, lat)
-                y1 *= 2.23563
+                x1 = haversine((0, 0), (0, lon), unit=Unit.METERS)
+                y1 = haversine((0, 0), (lat, 0), unit=Unit.METERS)
                 x.append(x1)
                 y.append(y1)
                 # add x and y to nodes
