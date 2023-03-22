@@ -6,7 +6,6 @@ from mapConverter import MapConverter
 from shapely.ops import unary_union
 from shapely.geometry import Polygon, Point
 import mapbox_earcut as earcut
-import itertools
 
 
 class RoadGenerator:
@@ -167,7 +166,7 @@ class MapGenerator:
 
 
 if __name__ == '__main__':
-    MC = MapConverter("maps/trondheim.json")
+    MC = MapConverter("maps/clean_intersection.json")
     MC.create_map()
     roads = [([[road[0][0][i], road[0][1][i]] for i in range(len(road[0][0]))])
              for road in MC.roads]
@@ -250,7 +249,7 @@ if __name__ == '__main__':
         total_poly_lines += len(interior.xy[0])-1
 
     print("Writing to file...")
-    with open("formattedMaps/trondheim.txt", "w") as f:
+    with open("formattedMaps/clean_intersection.txt", "w") as f:
         f.truncate(0)
         f.write(f"{len(new_nodes)} {len(new_roads)}\n")
         f.write(

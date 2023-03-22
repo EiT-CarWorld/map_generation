@@ -1,0 +1,134 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.59.4 36d058c8",
+  "osm3s": {
+    "timestamp_osm_base": "2023-03-22T08:21:23Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "way",
+      "id": 11571673,
+      "nodes": [
+        103176935,
+        103176936,
+        103176937,
+        103176938,
+        103176939,
+        10010397813,
+        103176941
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Marlboro Road",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Bergen, NJ",
+        "tiger:name_base": "Marlboro",
+        "tiger:name_type": "Rd",
+        "tiger:reviewed": "no",
+        "tiger:zip_left": "07075",
+        "tiger:zip_right": "07075"
+      }
+    },
+    {
+      "type": "way",
+      "id": 11580480,
+      "nodes": [
+        103206178,
+        103239025,
+        103167135,
+        103176939,
+        103239027,
+        103137485,
+        103186853
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "7th Street",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Bergen, NJ",
+        "tiger:name_base": "7th",
+        "tiger:name_type": "St",
+        "tiger:reviewed": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 103206178,
+      "lat": 40.849896,
+      "lon": -74.089099
+    },
+    {
+      "type": "node",
+      "id": 103239025,
+      "lat": 40.850519,
+      "lon": -74.088481
+    },
+    {
+      "type": "node",
+      "id": 103167135,
+      "lat": 40.851146,
+      "lon": -74.087863
+    },
+    {
+      "type": "node",
+      "id": 103176939,
+      "lat": 40.851824,
+      "lon": -74.087164
+    },
+    {
+      "type": "node",
+      "id": 103176941,
+      "lat": 40.8506896,
+      "lon": -74.0851332
+    },
+    {
+      "type": "node",
+      "id": 10010397813,
+      "lat": 40.8507334,
+      "lon": -74.0852385
+    },
+    {
+      "type": "node",
+      "id": 103176935,
+      "lat": 40.8544862,
+      "lon": -74.0917442
+    },
+    {
+      "type": "node",
+      "id": 103176936,
+      "lat": 40.8541989,
+      "lon": -74.0912414
+    },
+    {
+      "type": "node",
+      "id": 103176937,
+      "lat": 40.8539942,
+      "lon": -74.090967
+    },
+    {
+      "type": "node",
+      "id": 103176938,
+      "lat": 40.8531032,
+      "lon": -74.0894007
+    },
+    {
+      "type": "node",
+      "id": 103137485,
+      "lat": 40.852974,
+      "lon": -74.085979
+    },
+    {
+      "type": "node",
+      "id": 103186853,
+      "lat": 40.8535652,
+      "lon": -74.0854081
+    },
+    {
+      "type": "node",
+      "id": 103239027,
+      "lat": 40.8524122,
+      "lon": -74.0865857
+    }
+  ]
+}
