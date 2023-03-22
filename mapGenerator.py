@@ -7,6 +7,8 @@ from shapely.ops import unary_union
 from shapely.geometry import Polygon, Point
 import mapbox_earcut as earcut
 
+filename = "clean_intersection"
+
 
 class RoadGenerator:
 
@@ -63,7 +65,8 @@ class RoadGenerator:
     def get_end_points(self, p1, p2, start):
         v1 = self.points_to_vector(p1, p2)
         v1 = self.normalize_vector(v1)
-        v3 = self.scale_vector_to_size(v1, self.distance)
+        v3 = self.scale_vector_to_size(
+            v1, (self.distance * 1.3) if not self.distance == 3 else 5)
 
         top = self.rotate_vector(v3, math.pi / 2)
         bottom = self.rotate_vector(v3, -math.pi / 2)
@@ -166,7 +169,7 @@ class MapGenerator:
 
 
 if __name__ == '__main__':
-    MC = MapConverter("maps/clean_intersection.json")
+    MC = MapConverter(f"maps/{filename}.json")
     MC.create_map()
     roads = [([[road[0][0][i], road[0][1][i]] for i in range(len(road[0][0]))])
              for road in MC.roads]
@@ -249,7 +252,7 @@ if __name__ == '__main__':
         total_poly_lines += len(interior.xy[0])-1
 
     print("Writing to file...")
-    with open("formattedMaps/clean_intersection.txt", "w") as f:
+    with open(f"formattedMaps/{filename}.txt", "w") as f:
         f.truncate(0)
         f.write(f"{len(new_nodes)} {len(new_roads)}\n")
         f.write(
