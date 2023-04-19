@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import json
-from pyproj import Transformer
 from haversine import haversine, Unit
 
 
