@@ -7,7 +7,7 @@ from shapely.ops import unary_union
 from shapely.geometry import Polygon, Point
 import mapbox_earcut as earcut
 
-filename = "clean_intersection"
+filename = "midtbyen"
 
 
 class RoadGenerator:
