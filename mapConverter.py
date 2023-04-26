@@ -1,9 +1,8 @@
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import json
-from pyproj import Transformer
 from haversine import haversine, Unit
-
+import numpy as np
 
 class MapConverter:
     def __init__(self, filename):
@@ -40,6 +39,10 @@ class MapConverter:
         nodes = self.nodes
         ways = self.ways
 
+        # Picking one point as the lat/lon reference
+        refLat = np.min([node["lat"] for node in nodes.values()])
+        refLon = np.min([node["lon"] for node in nodes.values()])
+
         # convert the nodes to x and y coordinates and create a list of roads
         roads = []
         print("Converting map data to local coordinates...")
@@ -51,8 +54,8 @@ class MapConverter:
             for node in path:
                 lon = (nodes[node]["lon"])
                 lat = (nodes[node]["lat"])
-                x1 = haversine((0, 0), (0, lon), unit=Unit.METERS)
-                y1 = haversine((0, 0), (lat, 0), unit=Unit.METERS)
+                x1 = haversine((refLat, refLon), (refLat, lon), unit=Unit.METERS)
+                y1 = haversine((refLat, refLon), (lat, refLon), unit=Unit.METERS)
                 x.append(x1)
                 y.append(y1)
                 # add x and y to nodes
@@ -62,17 +65,17 @@ class MapConverter:
             roads.append([[x, y], ways[id][1]])
             self.local_roads.extend(ids[1:-2])
 
-        # find the smallest x and y values and subtract them from all x and y values
-        smallestX = min([min(road[0][0]) for road in roads])
-        smallestY = min([min(road[0][1]) for road in roads])
-        self.smallestX = smallestX
-        self.smallestY = smallestY
+        # find the mean x and y values and subtract them from all x and y values
+        meanX = np.mean([min(road[0][0]) for road in roads])
+        meanY = np.mean([min(road[0][1]) for road in roads])
+        self.meanX = meanX
+        self.meanY = meanY
 
         for i in range(len(roads)):
             roads[i][0][0] = [
-                x - smallestX for x in roads[i][0][0]]
+                x - meanX for x in roads[i][0][0]]
             roads[i][0][1] = [
-                y - smallestY for y in roads[i][0][1]]
+                y - meanY for y in roads[i][0][1]]
 
         self.roads = roads
 

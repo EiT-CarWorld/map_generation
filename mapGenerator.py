@@ -178,7 +178,7 @@ if __name__ == '__main__':
     road_polygons = []
     print("Generating roads...")
     for i in tqdm(range(len(roads))):
-        RG = RoadGenerator(roads[i], distance=(3 if oneway_roads[i] else 5))
+        RG = RoadGenerator(roads[i], distance=(5 if oneway_roads[i] else 5))
         RG.generate_track()
         road_polygons.append(RG.road_polygon)
     MG = MapGenerator(road_polygons)
@@ -197,8 +197,8 @@ if __name__ == '__main__':
     for id in tqdm(nodes):
         if "x" not in nodes[id]:
             continue
-        node_x = nodes[id]["x"] - MC.smallestX
-        node_y = nodes[id]["y"] - MC.smallestY
+        node_x = nodes[id]["x"] - MC.meanX
+        node_y = nodes[id]["y"] - MC.meanY
         id_locations[id] = len(new_nodes)
         new_nodes.append((node_x, node_y))
 
